@@ -297,6 +297,8 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
         
         BOOL animated = actionParams[@"animated"] ? [actionParams[@"animated"] boolValue] : YES;
         
+        [self.viewControllers.lastObject viewWillDisappear:animated];
+
         NSString *animationType = actionParams[@"animationType"];
         if ([animationType isEqualToString:@"fade"]) {
             CATransition *transition = [CATransition animation];
