@@ -235,6 +235,10 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
             [self.view.layer addAnimation:transition forKey:kCATransition];
             [self popToRootViewControllerAnimated:NO];
         } else {
+            if (self.viewControllers.count > 0)
+            {
+                [self.viewControllers.lastObject viewWillDisappear:animated];
+            }
             [self popToRootViewControllerAnimated:animated];
         }
         return;
