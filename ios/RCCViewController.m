@@ -11,7 +11,7 @@
 #import "RCTHelpers.h"
 #import "RCCTitleViewHelper.h"
 #import "RCCCustomTitleView.h"
-
+#import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 
 NSString* const RCCViewControllerCancelReactTouchesNotification = @"RCCViewControllerCancelReactTouchesNotification";
 
@@ -619,6 +619,11 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
             self.navigationItem.titleView.clipsToBounds = YES;
         }
     }
+    
+    // support for "disabledBackGesture" while using <FDFullscreenPopGesture>
+    NSNumber *disabledBackGesture = self.navigatorStyle[@"disabledBackGesture"];
+    BOOL disabledBackGestureBool = disabledBackGesture ? [disabledBackGesture boolValue] : NO;
+    self.fd_interactivePopDisabled = disabledBackGestureBool;
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_10_3
     if (@available(iOS 11.0, *)) {
