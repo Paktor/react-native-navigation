@@ -370,6 +370,10 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
             [parent updateStyle];
         }
     }
+    
+    // Override back button
+    [UINavigationBar appearance].backIndicatorImage = [UIImage imageNamed:@"icBackW"];
+    [UINavigationBar appearance].backIndicatorTransitionMaskImage = [UIImage imageNamed:@"icBackW"];
 }
 
 - (UIViewController *)viewControllerWithComponent:(NSString *)component
