@@ -46,7 +46,8 @@ async function startTabBasedApp(params) {
         } = _mergeScreenSpecificSettings(component.screen, screenInstanceID, params);
         _saveNavigatorButtonsProps(navigatorButtons);
         _saveNavBarComponentProps(navigatorStyle);
-        const passProps = Object.assign({}, component.passProps);
+        // const passProps = Object.assign({}, component.passProps);
+        const passProps = _.cloneDeep(component.passProps);
         passProps.navigatorID = navigatorID;
         passProps.screenInstanceID = screenInstanceID;
         passProps.navigatorEventID = navigatorEventID;
@@ -191,7 +192,8 @@ async function startSingleScreenApp(params) {
       } = _mergeScreenSpecificSettings(component.screen, screenInstanceID, params);
       _saveNavigatorButtonsProps(navigatorButtons);
       _saveNavBarComponentProps(navigatorStyle);
-      const passProps = Object.assign({}, params.passProps);
+      // const passProps = Object.assign({}, params.passProps);
+      const passProps = _.cloneDeep(params.passProps);
       passProps.navigatorID = navigatorID;
       passProps.screenInstanceID = screenInstanceID;
       passProps.navigatorEventID = navigatorEventID;
@@ -340,7 +342,8 @@ function navigatorPush(navigator, params) {
   } = _mergeScreenSpecificSettings(params.screen, screenInstanceID, params);
   _saveNavigatorButtonsProps(navigatorButtons);
   _saveNavBarComponentProps(navigatorStyle);
-  const passProps = Object.assign({}, params.passProps);
+  // const passProps = Object.assign({}, params.passProps);
+  const passProps = _.cloneDeep(params.passProps);
   passProps.navigatorID = navigator.navigatorID;
   passProps.screenInstanceID = screenInstanceID;
   passProps.navigatorEventID = navigatorEventID;
@@ -406,7 +409,8 @@ function navigatorResetTo(navigator, params) {
   } = _mergeScreenSpecificSettings(params.screen, screenInstanceID, params);
   _saveNavigatorButtonsProps(navigatorButtons);
   _saveNavBarComponentProps(navigatorStyle);
-  const passProps = Object.assign({}, params.passProps);
+  // const passProps = Object.assign({}, params.passProps);
+  const passProps = _.cloneDeep(params.passProps);
   passProps.navigatorID = navigator.navigatorID;
   passProps.screenInstanceID = screenInstanceID;
   passProps.navigatorEventID = navigatorEventID;
@@ -590,7 +594,8 @@ function showModal(params) {
   } = _mergeScreenSpecificSettings(params.screen, screenInstanceID, params);
   _saveNavigatorButtonsProps(navigatorButtons);
   _saveNavBarComponentProps(navigatorStyle);
-  const passProps = Object.assign({}, params.passProps);
+  // const passProps = Object.assign({}, params.passProps);
+  const passProps = _.cloneDeep(params.passProps);
   passProps.navigatorID = navigatorID;
   passProps.screenInstanceID = screenInstanceID;
   passProps.navigatorEventID = navigatorEventID;
@@ -648,7 +653,8 @@ function showLightBox(params) {
     navigatorButtons,
     navigatorEventID
   } = _mergeScreenSpecificSettings(params.screen, screenInstanceID, params);
-  const passProps = Object.assign({}, params.passProps);
+  // const passProps = Object.assign({}, params.passProps);
+  const passProps = _.cloneDeep(params.passProps);
   passProps.navigatorID = navigatorID;
   passProps.screenInstanceID = screenInstanceID;
   passProps.navigatorEventID = navigatorEventID;
@@ -688,7 +694,8 @@ function showInAppNotification(params) {
     navigatorButtons,
     navigatorEventID
   } = _mergeScreenSpecificSettings(params.screen, screenInstanceID, params);
-  const passProps = Object.assign({}, params.passProps);
+  // const passProps = Object.assign({}, params.passProps);
+  const passProps = _.cloneDeep(params.passProps);
   passProps.navigatorID = navigatorID;
   passProps.screenInstanceID = screenInstanceID;
   passProps.navigatorEventID = navigatorEventID;

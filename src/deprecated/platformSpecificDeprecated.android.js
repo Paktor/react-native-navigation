@@ -101,6 +101,8 @@ function navigatorPush(navigator, params) {
     adapted.passProps.commandType = 'Push';
   }
 
+  adapted.passProps = _.cloneDeep(adapted.passProps);
+
   return newPlatformSpecific.push(adapted);
 }
 
