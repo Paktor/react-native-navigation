@@ -57,6 +57,12 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     
     self.navigationBar.translucent = NO; // default
     
+    // Add RTL special rule
+    NSString *language = [[NSLocale currentLocale] languageCode];
+    if ([[language lowercaseString] containsString:@"ar"]) {
+      self.view.semanticContentAttribute = UISemanticContentAttributeForceRightToLeft;
+    }
+    
     [self processTitleView:viewController
                      props:props
                      style:navigatorStyle];
