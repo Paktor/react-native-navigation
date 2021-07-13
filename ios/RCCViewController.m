@@ -462,6 +462,10 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
     if (viewController.navigationController.navigationBarHidden != navBarHiddenBool) {
         [viewController.navigationController setNavigationBarHidden:navBarHiddenBool animated:YES];
     }
+    // support for "navBarHidden" while using <FDFullscreenPopGesture>
+    if (navBarHidden) {
+        self.fd_prefersNavigationBarHidden = YES;
+    }
     
     NSNumber *navBarHideOnScroll = self.navigatorStyle[@"navBarHideOnScroll"];
     BOOL navBarHideOnScrollBool = navBarHideOnScroll ? [navBarHideOnScroll boolValue] : NO;
