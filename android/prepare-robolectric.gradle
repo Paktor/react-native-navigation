@@ -9,20 +9,6 @@ dependencies {
     robolectricRuntime "org.json:json:20080701"
 }
 
-rootProject.task(type: Copy, overwrite: true, "downloadRobolectricDependencies") {
-    println "downloadRobolectricDependencies " + robolectricDependenciesFolder
-    from configurations.robolectricRuntime
-    into robolectricDependenciesFolder
-}
-
-project.afterEvaluate {
-  tasks.all {
-      if (it.name.startsWith("test")) {
-          it.dependsOn(rootProject.tasks.findByName("downloadRobolectricDependencies"))
-      }
-  }
-}
-
 android {
     testOptions {
         unitTests.all {
