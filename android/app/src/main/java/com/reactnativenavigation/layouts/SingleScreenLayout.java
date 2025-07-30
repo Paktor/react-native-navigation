@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
@@ -47,9 +50,31 @@ public class SingleScreenLayout extends BaseLayout {
     private final SlidingOverlaysQueue slidingOverlaysQueue = new SlidingOverlaysQueue();
     private LightBox lightBox;
 
+    private int lastTop = -1;
+    private int lastBottom = -1;
+
+    private void initEdgeToEdgePadding() {
+        setBackgroundColor(Color.BLACK);
+
+        if (Build.VERSION.SDK_INT >= 35) {
+            ViewCompat.setOnApplyWindowInsetsListener(this, (v, insets) -> {
+                Insets sysInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                int top = sysInsets.top;
+                int bottom = sysInsets.bottom;
+                if (top != lastTop || bottom != lastBottom) {
+                    lastTop = top;
+                    lastBottom = bottom;
+                    v.setPadding(0, sysInsets.top, 0, sysInsets.bottom);
+                }
+                return insets;
+            });
+        }
+    }
+
     public SingleScreenLayout(AppCompatActivity activity, SideMenuParams leftSideMenuParams,
                               SideMenuParams rightSideMenuParams, ScreenParams screenParams) {
         super(activity);
+        initEdgeToEdgePadding();
         this.screenParams = screenParams;
         this.leftSideMenuParams = leftSideMenuParams;
         this.rightSideMenuParams = rightSideMenuParams;
