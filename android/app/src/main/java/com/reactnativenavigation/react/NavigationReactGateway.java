@@ -101,7 +101,12 @@ public class NavigationReactGateway implements ReactGateway {
 		if (NavigationApplication.instance.clearHostOnActivityDestroy(activity)) {
 			getReactInstanceManager().onHostPause();
 		} else if (hasStartedCreatingContext() && isInitialized()) {
-			getReactInstanceManager().onHostPause(activity);
+			ReactContext reactContext = getReactContext();
+    		Activity currentActivity = reactContext != null ? reactContext.getCurrentActivity() : null;
+
+    		if (currentActivity == activity) {
+        		getReactInstanceManager().onHostPause(activity);
+    		}
 		}
 		jsDevReloadHandler.onPauseActivity();
 	}
